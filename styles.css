@@ -1,0 +1,211 @@
+/* Estilos generales */
+body {
+    background-color: #f1f1f1;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar img {
+    margin-bottom: 60px !important; /* Esto separará la imagen de los botones */
+}
+
+/* Aumenta el espacio entre los botones en la barra lateral */
+.sidebar .btn-group-vertical .btn {
+    margin-bottom: 60px !important; /* Agrega !important para forzar la aplicación del estilo */
+}
+
+
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+/* Títulos */
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas del formulario */
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Inputs y selects */
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #116dc9;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    border-color: #2d87f0;
+    box-shadow: 0 0 5px rgba(45, 135, 240, 0.5);
+}
+
+/* Botones primarios */
+.btn-primary {
+    background-color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(153, 9, 9, 0.1);
+}
+.btn-ter {
+    background-color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(247, 246, 246, 0.1);
+    color: white;
+}
+.btn-secondary {
+    background-color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(153, 9, 9, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #1e64a1;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn-ter:hover {
+    background-color: #1e64a1;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn-secondary:hover {
+    background-color: #1e64a1;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón para generar PDF */
+.btn-pdf {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 30px;
+    border-radius: 8px;
+    background-color: #000000;
+    border: none;
+    color: white;
+}
+
+.btn-pdf:hover {
+    background-color: #218838;
+}
+
+/* Iconos */
+.icon {
+    margin-right: 8px;
+}
+
+/* Secciones del formulario */
+.form-section {
+    margin-bottom: 20px;
+}
+
+/* Texto centrado */
+.text-center {
+    text-align: center;
+}
+
+/* Barra de botones en la parte superior */
+.top-buttons {
+    margin-bottom: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-buttons .btn {
+    margin: 5px;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+/* Elementos ocultos */
+.d-none {
+    display: none;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 110vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar img {
+    max-width: 100%;
+    height: auto;
+}
+/* Cambiar el color de fondo y texto de los botones */
+.sidebar .btn-group-vertical button {
+    background-color: #4bcad3; /* Cambia este color según lo que desees */
+    color: white; /* Color del texto */
+}
+
+/* Cambiar el color cuando se pasa el ratón (hover) */
+.sidebar .btn-group-vertical button:hover {
+    background-color: #494848; /* Cambia este color según lo que desees */
+    color: white; /* Mantener el texto blanco */
+}
+#btnSalir {
+    position: fixed;
+    bottom: 10px; /* Ajusta la distancia desde el fondo */
+    left: 50%;
+    transform: translateX(-1%); /* Centra el botón */
+    margin: 0;
+}
+.firma-selector-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(207, 11, 11, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.firma-selector-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.firma-selector-container select {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.firma-selector-container select:focus {
+    border-color: #007bff;
+    outline: none;
+}
