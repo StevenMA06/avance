@@ -55,6 +55,38 @@ document.getElementById("generarPDF2").addEventListener("click", async function 
         const fecha2 = document.getElementById("fecha2").value || "FECHA NO INGRESADA";
         const contenido2 = document.getElementById("contenido").value || "CONTENIDO NO INGRESADO";
         const nota2 = document.getElementById("nota").value || "NOTA NO INGRESADA";
+        const firmaSeleccionada2 = document.getElementById("firmaSeleccionada2")?.value || "Sin firma seleccionada";
+
+        console.log("Datos del formulario obtenidos:", {
+            solicitante2,
+            referencia2,
+            contenido,
+            nota,
+            fecha2,
+            firmaSeleccionada2
+
+        });
+        // Obtener la firma seleccionada
+        try {
+            // Cargar la imagen de la firma seleccionada
+            const firmaBytes = await fetch(firmaSeleccionada2).then(res => res.arrayBuffer());
+            const firmaImg = await pdfDoc.embedPng(firmaBytes); // Usa embedJpg si es JPG
+
+            // Ajustar tamaño y posición de la firma en el PDF
+            const firmaWidth = 100;  // Ancho en píxeles
+            const firmaHeight = 50;  // Alto en píxeles
+
+            page.drawImage(firmaImg, {
+                x: 300,  // Ajusta la posición horizontal
+                y: 110,  // Ajusta la posición vertical (debe estar en la parte baja del documento)
+                width: firmaWidth,
+                height: firmaHeight,
+            });
+
+            console.log("Firma añadida correctamente.");
+        } catch (error) {
+            console.error("Error al cargar la firma:", error.message);
+        }
 
         page.drawText(`SOLICITANTE :      ${solicitante2}`, { x: margin, y: yPos, size: 13, font: fontBold });
         yPos -= 20;

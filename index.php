@@ -48,6 +48,48 @@
                     <div class="text-center">
                         <button type="submit" class="btn btn-ter">Buscar</button>
                     </div>
+
+                    <script>
+                        function buscarCertificado(event) {
+                            event.preventDefault();  // Previene el envío del formulario de búsqueda
+
+                            var certificadoID = document.getElementById('certificadoID').value;
+
+                            // Verificar si el ID está vacío
+                            if (certificadoID.trim() == "") {
+                                alert("Por favor ingresa un ID.");
+                                return;
+                            }
+
+                            // Realizar la petición AJAX para buscar los datos del certificado
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "buscar.php", true);
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            
+                            // Enviar el ID al archivo PHP para realizar la consulta
+                            xhr.send("certificadoID=" + certificadoID);
+
+                            xhr.onload = function() {
+                                if (xhr.status == 200) {
+                                    // Si se encontró el certificado, llenar los campos
+                                    var response = JSON.parse(xhr.responseText);
+                                    if (response.success) {
+                                        document.getElementById('solicitante1').value = response.solicitante;
+                                        document.getElementById('referencia1').value = response.referencia;
+                                        document.getElementById('denominacion1').value = response.denominacion;
+                                        document.getElementById('codigo1').value = response.codigo;
+                                        document.getElementById('fecha1').value = response.fecha;
+                                        document.getElementById('firmaSeleccionada').value = response.firma;
+
+                                        // Mostrar el formulario de datos (si estaba oculto)
+                                        document.getElementById('formContainer1').classList.remove('d-none');
+                                    } else {
+                                        alert(response.message);
+                                    }
+                                }
+                            };
+                        }
+                    </script>
                 </form>
 
                 <!-- Formulario de Inserción de Certificado -->
@@ -88,82 +130,104 @@
                 </form>
             </div>
 
-            <script>
-                function buscarCertificado(event) {
-                    event.preventDefault();  // Previene el envío del formulario de búsqueda
-
-                    var certificadoID = document.getElementById('certificadoID').value;
-
-                    // Verificar si el ID está vacío
-                    if (certificadoID.trim() == "") {
-                        alert("Por favor ingresa un ID.");
-                        return;
-                    }
-
-                    // Realizar la petición AJAX para buscar los datos del certificado
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "buscar.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    
-                    // Enviar el ID al archivo PHP para realizar la consulta
-                    xhr.send("certificadoID=" + certificadoID);
-
-                    xhr.onload = function() {
-                        if (xhr.status == 200) {
-                            // Si se encontró el certificado, llenar los campos
-                            var response = JSON.parse(xhr.responseText);
-                            if (response.success) {
-                                document.getElementById('solicitante1').value = response.solicitante;
-                                document.getElementById('referencia1').value = response.referencia;
-                                document.getElementById('denominacion1').value = response.denominacion;
-                                document.getElementById('codigo1').value = response.codigo;
-                                document.getElementById('fecha1').value = response.fecha;
-                                document.getElementById('firmaSeleccionada').value = response.firma;
-
-                                // Mostrar el formulario de datos (si estaba oculto)
-                                document.getElementById('formContainer1').classList.remove('d-none');
-                            } else {
-                                alert(response.message);
-                            }
-                        }
-                    };
-                }
-            </script>
-
-
-
-
-
+        
             <!-- Contenedor para el Certificado TIPO 2 -->
             <div class="container mt-4 d-none" id="formContainer2" aria-hidden="true">
                 <h1 class="text-center">Datos del Certificado TIPO 2</h1>
-                <form id="form2">
+
+                <!-- Formulario de Búsqueda de Certificado -->
+                <form id="formBuscar2" method="POST" onsubmit="return buscarCertificado2(event)">
+    <div class="mb-3">
+        <label for="certificadoID2">Ingresa el ID del Certificado:</label>
+        <input type="text" class="form-control" id="certificadoID2" name="certificadoID2" required>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-ter">Buscar</button>
+    </div>
+</form>
+
+<script>
+    function buscarCertificado2(event) {
+        event.preventDefault();  // Previene el envío del formulario de búsqueda
+
+        var certificadoID2 = document.getElementById('certificadoID2').value;
+
+        // Verificar si el ID está vacío
+        if (certificadoID2.trim() == "") {
+            alert("Por favor ingresa un ID.");
+            return;
+        }
+
+        // Realizar la petición AJAX para buscar los datos del certificado
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "buscar2.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        
+        // Enviar el ID al archivo PHP para realizar la consulta
+        xhr.send("certificadoID2=" + certificadoID2);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                // Si se encontró el certificado, llenar los campos
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    document.getElementById('solicitante2').value = response.solicitante;
+                    document.getElementById('referencia2').value = response.referencia;
+                    document.getElementById('contenido').value = response.contenido;
+                    document.getElementById('nota').value = response.nota;
+                    document.getElementById('fecha2').value = response.fecha;
+                    document.getElementById('firmaSeleccionada2').value = response.firma;
+
+                    // Mostrar el formulario de datos (si estaba oculto)
+                    document.getElementById('formContainer2').classList.remove('d-none');
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
+    }
+</script>
+
+
+                <form id="form2" method="POST" action="insertar2.php"> 
                     <div class="mb-3">
                         <label for="solicitante" class="form-label">Solicitante</label>
-                        <input type="text" class="form-control" id="solicitante2" required>
+                        <input type="text" class="form-control" id="solicitante2" name="solicitante" required>
                     </div>
                     <div class="mb-3">
                         <label for="referencia" class="form-label">Referencia</label>
-                        <input type="text" class="form-control" id="referencia2" required>
+                        <input type="text" class="form-control" id="referencia2" name="referencia" required>
                     </div>
                     <div class="mb-3">
                         <label for="contenido" class="form-label">Contenido</label>
-                        <input type="text" class="form-control" id="contenido" required>
+                        <input type="text" class="form-control" id="contenido"  name="contenido" required>
                     </div>
                     <div class="mb-3">
                         <label for="nota" class="form-label">Nota</label>
-                        <input type="text" class="form-control" id="nota" required>
+                        <input type="text" class="form-control" id="nota" name="nota" required>
                     </div>
                     <div class="mb-3">
                         <label for="fecha" class="form-label">Fecha (Día y Mes)</label>
-                        <input type="text" class="form-control" id="fecha2" placeholder="Ejemplo: 26 diciembre" required>
+                        <input type="text" class="form-control" id="fecha2" name="fecha"placeholder="Ejemplo: 26 diciembre" required>
                         <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
                     </div>
+                    <div class="firma-selector-container">
+                        <label for="firmaSeleccionada2">Selecciona la firma:</label>
+                        <select id="firmaSeleccionada2">
+                            <option value="8.png">Arq1 firma</option>
+                            <option value="9.png">Arq2 firma</option>
+                            <option value="10.png">Arq3 firma</option>
+                        </select>
+                    </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="generarPDF2">Generar PDF</button>
+                        <button type="submit" class="btn btn-primary">Guardar Datos</button>
+                        <button type="button" class="btn btn-secondary" id="generarPDF2">Generar PDF</button>
                     </div>
                 </form>
             </div>
+
+
 
             <!-- Contenedor para el Certificado TIPO 3 -->
             <div class="container mt-4 d-none" id="formContainer3" aria-hidden="true">
