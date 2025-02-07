@@ -12,7 +12,8 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Obtiene los datos del formulario
+
+// Obtiene los datos del formula
 $solicitante = $_POST['solicitante'];
 $referencia = $_POST['referencia'];
 $denominacion = $_POST['denominacion'];
